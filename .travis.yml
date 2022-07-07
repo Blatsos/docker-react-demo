@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true blatsosinf/docker-react-demo npm run test
+
+deploy:
+  provider: elastikbeanstalk
+  region: "us-east-1"
+  name: "docker-react-demo"
+  env: "Dockerreactdemo-env"
+  bucket_name: "elasticbeanstalk-us-east-1-211784500529"
+  bucket_path: "docker-react-demo"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
